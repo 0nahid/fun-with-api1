@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who AM I</title>
+    <style>
+        body{
+            box-sizing: border-box;
+            width:700px;
+            margin: auto;
+            background: #222;
+            color: yellow;
+            
+        }
+        .user-container{
+            margin-top: 250px;
+            padding: 10%;
+            box-shadow: 5px 6px 10px 8px #e94b4b;
+        }
+        #user-image{
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            position: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="user-container">
+        <h1>Name : <span id="user-name"></span></h1>
+        <h2>Mail: <span id="mail"></span> </h2>
+        <h2>Address: <span id="address"></span> </h2>
+        <img id="user-image" src="" alt="Loading....">
+    </div>
+
+    <script>
+        fetch('https://randomuser.me/api/')
+            .then(res => res.json())
+            .then(data => {
+                const userInfo = data.results[0];
+                const userName = userInfo.name;
+                const location = userInfo.location;
+                const userIdentity = userInfo.picture;
+                document.getElementById('user-name').innerText = ` ${userName.title} ${userName.first} ${userName.last} `;
+                document.getElementById('mail').innerText = userInfo.email;
+                document.getElementById('address').innerText = location.city;
+                document.getElementById('user-image').src = userIdentity.large;
+            })
+    </script>
+</body>
+
+</html>
