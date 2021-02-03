@@ -16,4 +16,4 @@ function loadUser() {
 loadUser();
 setInterval(() => {
     loadUser();
-}, 0);
+}, 1000);
